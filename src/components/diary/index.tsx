@@ -5,25 +5,43 @@ import diaryModel from './tools';
 const styles = require('./style.module.scss');
 
 const Diary: React.SFC = () => {
-	const [devKeyWord, setDevKeyWord] = useState('');
-	const [modifyKeyWord, setModifyKeyWord] = useState('');
+	const [devKeyWord, setDevKeyWord] = useState(
+		'记一笔新增，记一笔详情，额度分类，账单详情'
+	);
+	const [modifyKeyWord, setModifyKeyWord] = useState(
+		'官网首页，官网关于我们，薪收支工作台'
+	);
 	const [helpKeyWord, setHelpKeyWord] = useState('');
 	const [diary, setDiary] = useState('');
+	const [devProcess, setDevProcess] = useState('10，5，6，8');
+	const [modifyProcess, setModifyProcess] = useState('10，6，7');
+	const [branch, setBranch] = useState('0720');
 
 	const onSubmit = () => {
 		let _diary = '';
 		_diary =
 			_diary +
-			diaryModel('dev', devKeyWord) +
-			diaryModel('modify', modifyKeyWord) +
-			diaryModel('help', helpKeyWord);
+			diaryModel('dev', devKeyWord, devProcess, branch) +
+			diaryModel('modify', modifyKeyWord, modifyProcess, branch) +
+			diaryModel('help', helpKeyWord, '', branch);
 		setDiary(_diary);
 	};
 	return (
 		<Fragment>
 			<Card>
 				<div>
-					<header className={styles['header']}>开发：（关键字用，分割）</header>
+					<header className={styles['header']}>分支：（形如：0720）</header>
+					<div className={styles['input']}>
+						<label>分支名称</label>
+						<Input value={branch} onChange={(e) => setBranch(e.target.value)} />
+					</div>
+				</div>
+			</Card>
+			<Card>
+				<div>
+					<header className={styles['header']}>
+						开发：（关键字用，分割）,进度（1-10）
+					</header>
 					<div className={styles['input']}>
 						<label>关键字</label>
 						<Input
@@ -31,16 +49,32 @@ const Diary: React.SFC = () => {
 							onChange={(e) => setDevKeyWord(e.target.value)}
 						/>
 					</div>
+					<div className={styles['input']}>
+						<label>进度</label>
+						<Input
+							value={devProcess}
+							onChange={(e) => setDevProcess(e.target.value)}
+						/>
+					</div>
 				</div>
 			</Card>
 			<Card>
 				<div>
-					<header className={styles['header']}>bug：（关键字用，分割）</header>
+					<header className={styles['header']}>
+						bug：（关键字用，分割）,进度（1-10）
+					</header>
 					<div className={styles['input']}>
 						<label>关键字</label>
 						<Input
 							value={modifyKeyWord}
 							onChange={(e) => setModifyKeyWord(e.target.value)}
+						/>
+					</div>
+					<div className={styles['input']}>
+						<label>进度</label>
+						<Input
+							value={modifyProcess}
+							onChange={(e) => setModifyProcess(e.target.value)}
 						/>
 					</div>
 				</div>
@@ -60,7 +94,7 @@ const Diary: React.SFC = () => {
 				</div>
 			</Card>
 			<Button type="primary" onClick={onSubmit}>
-				组装变形
+				提交
 			</Button>
 			<div
 				className={styles['main']}
