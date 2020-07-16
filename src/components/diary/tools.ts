@@ -109,7 +109,8 @@ const modify1 = (keyWord: string) => {
 		`修改${keyWord}相关的问题`,
 		`配合测试，修改${keyWord}的问题`,
 		`根据产品提出的方案，优化${keyWord}的问题`,
-		`修改${keyWord}报错的问题`,
+        `修改${keyWord}报错的问题`,
+        `优化了${keyWord}模块的代码`,
 		`和产品讨论后，优化${keyWord}的问题`,
 		`对${keyWord}的问题进行修改`,
 		`对测试提出的的${keyWord}相关的问题进行了修改`,
@@ -117,7 +118,7 @@ const modify1 = (keyWord: string) => {
 		`定位了${keyWord}的问题`,
 		`在测试同学的协助下确认${keyWord}问题`,
 	];
-	return content[Math.floor(Math.random() * 10)];
+	return content[Math.floor(Math.random() * 11)];
 };
 
 const modify2 = (process: number) => {
