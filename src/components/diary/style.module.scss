@@ -1,0 +1,23 @@
+@mixin flex-layout($justify: center) {
+	display: flex;
+	justify-content: $justify;
+	align-items: center;
+}
+
+$space: 16px;
+
+.header {
+	text-align: left;
+}
+
+.input {
+	@include flex-layout(flex-start);
+	> label {
+		width: 70px;
+		text-align: left;
+	}
+}
+
+.main {
+	text-align: left;
+}

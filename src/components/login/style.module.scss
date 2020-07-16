@@ -1,0 +1,44 @@
+@mixin flex-layout($justify: center) {
+	display: flex;
+	justify-content: $justify;
+	align-items: center;
+}
+
+$space: 16px;
+
+.layout {
+	width: 100%;
+	height: 100%;
+	font-size: 12px;
+	@include flex-layout();
+	.main {
+		@include flex-layout(space-between);
+		width: 516px;
+		padding: $space;
+		border: 1px solid #dddddd;
+		.img {
+			background: #33e692;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.section {
+			flex-wrap: wrap;
+			.question {
+				margin-left: $space/2;
+				margin-bottom: $space;
+				text-align: left;
+			}
+			.operator {
+				@include flex-layout(space-between);
+				margin-left: $space/2;
+				margin-top: $space;
+			}
+		}
+		.section,
+		.img {
+			width: calc(50% - #{$space/2});
+		}
+	}
+}
