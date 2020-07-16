@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { Input, Card, Button } from 'antd';
+import { Input, Card, Button, Switch } from 'antd';
 import diaryModel from './tools';
 
 const styles = require('./style.module.scss');
@@ -11,11 +11,12 @@ const Diary: React.SFC = () => {
 	const [modifyKeyWord, setModifyKeyWord] = useState(
 		'官网首页，官网关于我们，薪收支工作台'
 	);
-	const [helpKeyWord, setHelpKeyWord] = useState('');
+	const [helpKeyWord, setHelpKeyWord] = useState('react，tyscript，nodejs');
 	const [diary, setDiary] = useState('');
 	const [devProcess, setDevProcess] = useState('10，5，6，8');
 	const [modifyProcess, setModifyProcess] = useState('10，6，7');
 	const [branch, setBranch] = useState('0720');
+	const [sort, setSort] = useState(false);
 
 	const onSubmit = () => {
 		let _diary = '';
@@ -24,10 +25,20 @@ const Diary: React.SFC = () => {
 			diaryModel('dev', devKeyWord, devProcess, branch) +
 			diaryModel('modify', modifyKeyWord, modifyProcess, branch) +
 			diaryModel('help', helpKeyWord, '', branch);
+		if (sort) {
+			_diary = _diary
+				.split('<br/>')
+				.map((item, i, arr) =>
+					i === arr.length - 1 ? item : `${item}<br/>${i + 1}.`
+				)
+				.join('');
+		}
 		setDiary(_diary);
 	};
 	return (
 		<Fragment>
+			是否排序：
+			<Switch onChange={(checked) => setSort(checked)} />
 			<Card>
 				<div>
 					<header className={styles['header']}>分支：（形如：0720）</header>

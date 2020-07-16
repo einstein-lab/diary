@@ -10,8 +10,8 @@ export default function (
 			keyWord &&
 				keyWord.split('，').forEach((kw, i) => {
 					const processes = process.split('，');
-					content = `${content}</br>${dev1(kw, branch)}，${dev2(
-						parseInt(processes[i]) * 10
+					content = `${content}<br/>${dev1(kw, branch)}，${dev2(
+						parseInt(processes[i])
 					)}，${dev3(branch)}`;
 				});
 			break;
@@ -21,7 +21,7 @@ export default function (
 				keyWord.split('，').forEach((kw, i) => {
 					const processes = process.split('，');
 					content = `${content}<br/>${modify1(kw)}，${modify2(
-						parseInt(processes[i]) * 10
+						parseInt(processes[i])
 					)}，${dev3(branch)}`;
 				});
 			break;
@@ -29,7 +29,7 @@ export default function (
 		case 'help': {
 			keyWord &&
 				keyWord.split('，').forEach((kw) => {
-					content = `${content}<br/>阅读了${kw}相关的文档，并对相关的只是有了一些了解`;
+					content = `${content}<br/>${help1(kw)}，${help2(kw)}`;
 				});
 			break;
 		}
@@ -123,24 +123,49 @@ const modify1 = (keyWord: string) => {
 const modify2 = (process: number) => {
 	if (process <= 6) {
 		const content = [
-			`目前进度${process}%`,
+			`目前进度${process * 10}%`,
 			`不过暂时进展还不大`,
-			`因为涉及逻辑比较复杂，暂时进度${process}%`,
-			`涉及组件比较多，目前完成${process}%`,
-			`暂时仅完成${process}%`,
+			`因为涉及逻辑比较复杂，暂时进度${process * 10}%`,
+			`涉及组件比较多，目前完成${process * 10}%`,
+			`暂时仅完成${process * 10}%`,
 		];
 		return content[Math.floor(Math.random() * 5)];
 	} else if (process <= 9 && process > 6) {
 		const content = [
 			`目前大部分都已经修改完成`,
-			`当前进度${process}%`,
-			`已经完成${process}%，还有一些细节需要明天和产品讨论下`,
-			`目前完成${process}%，仅剩部分逻辑，需要后台配合`,
-			`还剩大概${100 - process}%未修改`,
+			`当前进度${process * 10}%`,
+			`已经完成${process * 10}%，还有一些细节需要明天和产品讨论下`,
+			`目前完成${process * 10}%，仅剩部分逻辑，需要后台配合`,
+			`还剩大概${100 - process * 10}%未修改`,
 		];
 		return content[Math.floor(Math.random() * 5)];
 	} else {
 		const content = [`目前已经全部修改完成`, `当前进度100%`, `已经完成修改`];
 		return content[Math.floor(Math.random() * 3)];
 	}
+};
+
+const help1 = (keyWord: string) => {
+	const content = [
+		`学习了${keyWord}相关的内容`,
+		`由于项目需要，看了些关于${keyWord}的文档`,
+		`了解了一些${keyWord}相关的内容`,
+		`对${keyWord}以及相关内容进行了学习`,
+		`阅读了与${keyWord}有关的文档`,
+		`对自己在${keyWord}上的相关的问题进行了整理`,
+		`梳理与${keyWord}的一些要点`,
+		`看了与关于${keyWord}的书`,
+	];
+	return content[Math.floor(Math.random() * 8)];
+};
+
+const help2 = (keyWord: string) => {
+	const content = [
+		`对${keyWord}有了比较深入的了解`,
+		`积累了部分与${keyWord}有关的学习经验`,
+		`较好的掌握了${keyWord}相关的知识`,
+		`了解了${keyWord}的用法，以及一些相关知识点`,
+		`但感觉了解的还不够透彻，还要后续继续学习`,
+	];
+	return content[Math.floor(Math.random() * 5)];
 };

@@ -37,11 +37,11 @@ const Login: React.SFC<TProps> = (props: TProps) => {
 		<div className={styles['layout']}>
 			<div className={styles['main']}>
 				<div className={styles['img']}>
-					<img src={'img'} />
+					<img alt="图片" src={img} />
 				</div>
 				<div className={styles['section']}>
 					<div className={styles['question']}>
-						问题：<span>22222222222</span>
+						问题：<span>她的名字是？</span>
 					</div>
 					<Input value={keyWord} onChange={(e) => setKeyWord(e.target.value)} />
 					<div className={styles['operator']}>
