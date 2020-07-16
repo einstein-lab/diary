@@ -1,6 +1,6 @@
 import React from 'react';
 import Demo from './components/demo';
-import { Route } from 'react-router';
+import { Route, Redirect } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Login from './components/login';
@@ -24,11 +24,11 @@ class App extends React.Component {
 			component: () => Login,
 		},
 	];
-
 	render() {
 		return (
 			<div className="App">
 				<BrowserRouter>
+					<Redirect to={'login'} />
 					{this.router.map(({ key, path, component }) => (
 						<Route key={key} path={path} component={component()}></Route>
 					))}
